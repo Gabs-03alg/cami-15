@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cams cumple 15 — Flower Fest</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="bg-sakura text-slate-800">
+
+  <!-- AUDIO -->
+  <audio id="applauseAudio" preload="auto">
+    <source src="aplausos.mp3" type="audio/mpeg">
+  </audio>
+
+  <audio id="introAudio" preload="auto">
+    <source src="intro.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- TOP BAR -->
+  <div class="fixed top-4 left-0 right-0 z-40 px-4">
+    <div class="max-w-5xl mx-auto glass rounded-2xl border border-white/50 shadow px-4 py-3 flex items-center justify-between gap-3">
+      <div class="flex items-center gap-2">
+        <span class="pill">🦋 Cams cumple 15</span>
+        <span class="hidden sm:inline text-xs text-slate-500">Garden casual-chic • acuarela • mariposas</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <a id="spotifyTop" target="_blank" rel="noopener" class="pill hover:opacity-80">Spotify 🎧</a>
+        <a id="rsvpTop" target="_blank" rel="noopener" class="pill hover:opacity-80">RSVP 💌</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- OVERLAY APLAUSO (primero al entrar) -->
+  <div id="applauseOverlay" class="overlay">
+    <div class="glass max-w-lg w-full rounded-3xl p-8 text-center border border-white/50">
+      <div class="tag mx-auto w-fit mb-4">TELEVISA PRESENTA 🎬</div>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-[color:var(--hot)] mb-2">
+        👏 Un aplauso para mami y papi 👏
+      </h2>
+      <p class="text-slate-700 text-lg leading-relaxed">
+        Porque de verdad… <span class="font-extrabold">rompieron</span> 💖✨
+      </p>
+
+      <button id="enterBtn" class="mt-6 w-full py-3 rounded-2xl btn-primary text-white font-extrabold shadow hover:opacity-90 transition">
+        Entrar a la invitación 💌
+      </button>
+
+      <p class="mt-3 text-xs text-slate-500">
+        (El aplauso suena al tocar “Entrar” 🙌)
+      </p>
+    </div>
+  </div>
+
+  <!-- MODAL CAMI REVEAL (sale después del intro.mp3) -->
+  <div id="revealOverlay" class="overlay hidden">
+    <div class="glass max-w-lg w-full rounded-3xl p-6 text-center border border-white/50">
+      <div class="tag mx-auto w-fit mb-3">PLOT TWIST ✨</div>
+
+      <div class="sticker mx-auto max-w-xs" style="--rot:-1deg;">
+        <img src="cami-reveal.png" alt="Cams reveal">
+      </div>
+
+      <h3 class="mt-4 text-3xl font-extrabold">
+        Y entonces… <span class="script text-[color:var(--hot)]">yo</span> 💖
+      </h3>
+      <p class="mt-2 text-slate-700">
+        Así que… será el <span class="font-extrabold text-[color:var(--hot)]">Cams cumple 15</span> 🌸
+      </p>
+
+      <button id="revealContinueBtn" class="mt-5 w-full py-3 rounded-2xl btn-primary text-white font-extrabold shadow hover:opacity-90 transition">
+        Continuar 💐
+      </button>
+    </div>
+  </div>
+
+  <main class="px-6 pt-24 pb-12 max-w-5xl mx-auto space-y-10">
+
+    <!-- ESCENA 1: SOBRE -->
+    <section id="scene1" class="glass rounded-3xl p-8 border border-white/50 shadow-xl text-center">
+      <div class="tag mx-auto w-fit mb-4">Escena 1 / Intro 💌</div>
+
+      <h1 class="text-4xl md:text-5xl font-extrabold">
+        <span class="script text-[color:var(--hot)]">Cams cumple 15</span>
+      </h1>
+
+      <p class="mt-3 text-slate-700">
+        Toca el sobre… y acepta tu destino 😌💌<br/>
+        <span class="text-slate-600">Prometo que vale la pena.</span>
+      </p>
+
+      <div class="mt-8 flex justify-center">
+        <button id="openEnvelopeBtn" class="relative w-[300px] h-[200px] sm:w-[420px] sm:h-[260px]">
+          <div class="absolute inset-0 rounded-3xl bg-white/90 border border-pink-100 shadow-xl"></div>
+
+          <div id="flap" class="absolute left-0 right-0 top-0 h-1/2 origin-top transition-transform duration-500"
+               style="transform: rotateX(0deg);">
+            <div class="w-full h-full rounded-t-3xl border-b border-pink-200"
+                 style="background: linear-gradient(135deg, rgba(255,209,220,.9), rgba(204,232,255,.75));"></div>
+            <div class="absolute inset-0 flex items-center justify-center text-[color:var(--hot)] font-extrabold">
+              OPEN ✨
+            </div>
+          </div>
+
+          <div id="letter" class="absolute left-5 right-5 bottom-5 top-12 rounded-2xl bg-white border border-pink-100 shadow-md transition-all duration-500"
+               style="transform: translateY(40px); opacity: 0;">
+            <div class="p-5 text-left">
+              <div class="text-xs uppercase tracking-widest text-slate-500 font-bold">Intro</div>
+              <div class="mt-1 text-lg font-extrabold text-[color:var(--hot)]">Bad Bunny (0:39–0:49)</div>
+              <div class="mt-2 text-sm text-slate-700 leading-relaxed">
+                (Se reproduce al abrir el sobre 🎶)
+              </div>
+            </div>
+          </div>
+        </button>
+      </div>
+
+      <p class="mt-6 text-xs text-slate-500">
+        Si no suena: tu navegador solo deja audio después de clicks (normal).
+      </p>
+    </section>
+
+    <!-- ESCENA 2: TELEVISA PRESENTA -->
+    <section id="scene2" class="glass rounded-3xl p-8 border border-white/50 shadow-xl">
+      <div class="tag mb-4">Escena 2 / Televísa 📺</div>
+
+      <h2 class="text-3xl md:text-4xl font-extrabold">
+        TELEVISA PRESENTA… 📺
+      </h2>
+
+      <p class="mt-3 text-slate-700 leading-relaxed">
+        “Érase una vez unos jóvenes… que metieron la pata” 💅<br/>
+        Y de esa “metida”… salí yo. Así que ahora toca celebrar.
+      </p>
+
+      <div class="mt-6 bubble">
+        <div class="text-xs uppercase tracking-widest font-extrabold text-[color:var(--hot)]">Plot twist</div>
+        <p class="mt-2 text-slate-700">
+          Y entonces… yo ✨<br/>
+          Así que… será el <span class="font-extrabold text-[color:var(--hot)]">Cams cumple 15</span>.
+        </p>
+      </div>
+    </section>
+
+    <!-- ESCENA 3: SAVE THE DATE + COUNTDOWN -->
+    <section id="scene3" class="glass rounded-3xl p-8 border border-white/50 shadow-xl">
+      <div class="tag mb-4">Escena 3 / Save the date ⏳</div>
+
+      <h2 class="text-3xl md:text-4xl font-extrabold">SAVE THE DATE 📅</h2>
+      <p class="mt-2 text-slate-600">
+        Mark your calendar — Missing
+        <span class="font-extrabold text-[color:var(--hot)]" id="cdDaysInline">00</span>
+        days…
+      </p>
+
+      <div class="mt-6 grid grid-cols-3 gap-3 text-center">
+        <div class="glass rounded-2xl p-4 border border-white/50">
+          <div class="text-xs uppercase tracking-widest text-slate-500 font-bold">Days</div>
+          <div class="text-3xl font-extrabold text-[color:var(--hot)]" id="cdDays">00</div>
+        </div>
+        <div class="glass rounded-2xl p-4 border border-white/50">
+          <div class="text-xs uppercase tracking-widest text-slate-500 font-bold">Hours</div>
+          <div class="text-3xl font-extrabold" id="cdHours">00</div>
+        </div>
+        <div class="glass rounded-2xl p-4 border border-white/50">
+          <div class="text-xs uppercase tracking-widest text-slate-500 font-bold">Minutes</div>
+          <div class="text-3xl font-extrabold" id="cdMinutes">00</div>
+        </div>
+      </div>
+
+      <div class="mt-6 bubble">
+        <p class="text-slate-700">
+          Sí, ya son 15s… y sí, a todos nos siguen pasando los años 😭<br/>
+          <span class="font-extrabold">pero las ganas de celebrar no.</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- ESCENA 4: WHEN/WHERE + WAZE -->
+    <section id="scene4" class="glass rounded-3xl p-8 border border-white/50 shadow-xl">
+      <div class="tag mb-4">Escena 4 / When & Where 📍</div>
+
+      <h2 class="text-3xl md:text-4xl font-extrabold">WHEN & WHERE 📍</h2>
+      <p class="mt-2 text-slate-600">¿Cuándo y dónde?</p>
+
+      <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bubble">
+          <div class="text-xs uppercase tracking-widest font-extrabold text-[color:var(--hot)]">Fecha y hora</div>
+          <p class="mt-2 text-slate-700 leading-relaxed">
+            <span class="font-extrabold">Fecha:</span> Sábado 14 de Marzo, 2026<br/>
+            <span class="font-extrabold">Hora:</span> 2:00 PM
+          </p>
+        </div>
+
+        <div class="bubble">
+          <div class="text-xs uppercase tracking-widest font-extrabold text-[color:var(--hot)]">Lugar</div>
+          <p class="mt-2 text-slate-700 leading-relaxed">
+            <span class="font-extrabold">Campo Verde CAES</span><br/>
+            <span class="text-slate-600">Camino a Pavón</span>
+          </p>
+
+          <div class="mt-4 flex flex-col sm:flex-row gap-2">
+            <a id="wazeBtn" target="_blank" rel="noopener" class="btn-outline w-full text-center">Abrir en Waze 🚗</a>
+            <a id="mapsBtn" target="_blank" rel="noopener" class="btn-outline w-full text-center">Google Maps 📍</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 bubble">
+        <p class="text-slate-700">
+          Hay sorpresas… pero no se filtra nada <span class="font-extrabold">(¡Queda atento!)</span> 😌✨
+        </p>
+      </div>
+    </section>
+
+    <!-- ESCENA 5: OUTFITS + PINTEREST -->
+    <section id="scene5" class="glass rounded-3xl p-8 border border-white/50 shadow-xl">
+      <div class="tag mb-4">Escena 5 / Outfits 🌷</div>
+
+      <h2 class="text-3xl md:text-4xl font-extrabold">OUTFITS (para no dar cringe)</h2>
+      <p class="mt-2 text-slate-600">
+        Garden casual-chic event 🌿✨
+      </p>
+
+      <div class="mt-6 bubble">
+        <p class="text-slate-700 leading-relaxed">
+          🚫 <span class="font-extrabold">No rosa</span> (reservado para la quinceañera).<br/>
+          🚫 <span class="font-extrabold">No jeans</span> (pls, te lo pido con cariño).
+        </p>
+      </div>
+
+      <div class="mt-6 flex flex-col md:flex-row gap-3">
+        <a id="pinterestBtn" target="_blank" rel="noopener"
+           class="btn-primary w-full md:w-auto text-center text-white font-extrabold px-6 py-3 rounded-2xl shadow hover:opacity-90 transition">
+          Ver Pinterest / Moodboard ✨
+        </a>
+
+        <div class="bubble w-full">
+          <div class="text-xs uppercase tracking-widest font-extrabold text-[color:var(--hot)]">Vibe</div>
+          <p class="mt-1 text-slate-700">
+            Pastel • acuarela • flores • mariposas 🦋 • “chic pero chil”
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ESCENA 6: GIFTS -->
+    <section id="scene6" class="glass rounded-3xl p-8 border border-white/50 shadow-xl">
+      <div class="tag mb-4">Escena 6 / Regalos 🎁</div>
+
+      <h2 class="text-3xl md:text-4xl font-extrabold">Cero drama. Cero “¿qué le compro?”.</h2>
+
+      <div class="mt-4 bubble">
+        <p class="text-slate-700 leading-relaxed">
+          Opción 1: <span class="font-extrabold">Gift cards</span> (yo feliz):<br/>
+          • BIAB<br/>
+          • Zara<br/>
+          • Kitapenas<br/>
+          • Sophos<br/>
+          • Museo (experiencia) 🖼️<br/><br/>
+          Opción 2 (mi favorita): <span class="font-extrabold text-[color:var(--hot)]">lluvia / transferencias</span> 💌<br/>
+          Porque salgo de GT el <span class="font-extrabold">21 de marzo</span> ✈️
+        </p>
+      </div>
+    </section>
+
+    <!-- ESCENA 7: SPOTIFY -->
+    <section id="scene7" class="glass rounded-3xl p-8 border border-white/50 shadow-xl">
+      <div class="tag mb-4">Escena 7 / Playlist 🎧</div>
+
+      <h2 class="text-3xl md:text-4xl font-extrabold">La lista de Spotify</h2>
+      <p class="mt-2 text-slate-600">
+        Para ir entrando en mood desde ya 💿
+      </p>
+
+      <div class="mt-6 flex flex-col sm:flex-row gap-3">
+        <a id="spotifyBtn" target="_blank" rel="noopener" class="btn-outline w-full sm:w-auto text-center">
+          Abrir playlist en Spotify 🎶
+        </a>
+      </div>
+    </section>
+
+    <!-- ESCENA 8: RESUMEN + RSVP -->
+    <section id="scene8" class="glass rounded-3xl p-8 border border-white/50 shadow-xl">
+      <div class="tag mb-4">Escena 8 / Resumen + RSVP 💌</div>
+
+      <h2 class="text-3xl md:text-4xl font-extrabold">¿Vienes o qué?</h2>
+
+      <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bubble">
+          <div class="text-xs uppercase tracking-widest font-extrabold text-[color:var(--hot)]">Resumen</div>
+          <p class="mt-2 text-slate-700 leading-relaxed">
+            <span class="font-extrabold">Cams 15th Bday</span> 🌸<br/>
+            <span class="font-extrabold">Sábado 14 de Marzo, 2026</span> • 2:00 PM<br/>
+            <span class="font-extrabold">Campo Verde CAES</span> (Camino a Pavón)<br/><br/>
+            Por favor confirmar antes del <span class="font-extrabold">28 de febrero</span> 💖
+          </p>
+        </div>
+
+        <div class="bubble">
+          <div class="text-xs uppercase tracking-widest font-extrabold text-[color:var(--hot)]">RSVP</div>
+          <p class="mt-2 text-slate-700">
+            Aquí va tu link de Form (me lo pasas cuando lo tengas).<br/>
+            Debe pedir: nombre + # teléfono + cuántos asisten.
+          </p>
+
+          <a id="rsvpBtn" target="_blank" rel="noopener"
+             class="mt-4 btn-primary block text-center text-white font-extrabold px-6 py-3 rounded-2xl shadow hover:opacity-90 transition">
+            Confirmar asistencia 💌
+          </a>
+
+          <p class="mt-4 text-xs text-slate-500">
+            Cami XV — de los Guerra Alarcón • Made with 💖
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
